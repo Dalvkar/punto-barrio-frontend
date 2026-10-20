@@ -30,9 +30,9 @@ Las 6 pruebas con Vitest, Testing Library y jsdom cubren el cliente HTTP, errore
 
 `.github/workflows/frontend-ci.yml` valida el mensaje Conventional Commit y ejecuta `npm ci`, pruebas y build en cada push a `main` o `master` y en cada pull request. Protege `main` en GitHub y exige el check `Frontend CI` para impedir merges si falla.
 
-## Subagente Claude Code
+## Hooks y subagente Codex
 
-`.claude/agents/frontend.md` define el subagente encargado de componentes React, estilos, experiencia de usuario, consumo de la API y pruebas. Para cambios de contrato o persistencia debe coordinarse con los agentes `backend` y `database` del workspace completo.
+`.codex/agents/frontend.toml` define el subagente nativo encargado de componentes React, estilos, experiencia de usuario, consumo de la API y pruebas. `AGENTS.md` guía su uso y `.codex/hooks.json` protege secretos, bloquea comandos destructivos o commits inválidos y ejecuta pruebas después de cambios de código. Para cambios de contrato o persistencia debe coordinarse con los agentes `backend` y `database` del workspace completo.
 
 ## Render
 
