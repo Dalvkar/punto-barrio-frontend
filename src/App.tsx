@@ -62,7 +62,7 @@ function Dashboard({ onNavigate }: { onNavigate: (page: Page) => void }) {
   return <>
     <Heading eyebrow="VISTA GENERAL" title="Así marcha tu tienda" action={<button onClick={() => onNavigate('sales')} className="btn-primary"><Plus size={17}/>Registrar venta</button>} />
     <div className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      <Metric label="Ingresos de hoy" value={money(data.todayRevenue)} helper="Acumulado del día" icon={CircleDollarSign} color="green" />
+      <Metric label="Ingresos de hoy" value={money(data.todayCashIncome)} helper="Acumulado del día" icon={CircleDollarSign} color="green" />
       <Metric label="Ventas realizadas" value={String(data.todaySales)} helper="Comprobantes emitidos" icon={ReceiptText} color="orange" />
       <Metric label="Productos activos" value={String(data.activeProducts)} helper="En el catálogo" icon={Box} color="blue" />
       <Metric label="Valor de inventario" value={money(data.inventoryValue)} helper="Calculado al costo" icon={TrendingUp} color="yellow" />

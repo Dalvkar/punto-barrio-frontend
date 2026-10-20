@@ -9,6 +9,7 @@ const apiMock = vi.mocked(api);
 
 const dashboard = {
   todayRevenue: 125,
+  todayCashIncome: 125,
   todaySales: 3,
   activeProducts: 8,
   inventoryValue: 940,
@@ -33,6 +34,20 @@ describe('App', () => {
     expect(incomeLabel).toBeInTheDocument();
     expect(screen.getByText('Ventas realizadas')).toBeInTheDocument();
     expect(incomeLabel.parentElement).toHaveTextContent(/125/);
+  });
+
+  it('muestra ingresos de caja aunque no existan ventas del dia', async () => {
+    apiMock.mockResolvedValueOnce({
+      ...dashboard,
+      todayRevenue: 0,
+      todayCashIncome: 75,
+    });
+    render(<App />);
+
+    const incomeLabel = await screen.findByText('Ingresos de hoy');
+    const metricValue = incomeLabel.parentElement?.querySelector('.metric-value');
+    expect(metricValue).toHaveTextContent(/75/);
+    expect(metricValue).not.toHaveTextContent(/0[.,]00/);
   });
 
   it('permite navegar al catalogo y buscar productos', async () => {
