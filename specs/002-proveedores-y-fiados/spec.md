@@ -1,15 +1,16 @@
-# Especificación frontend implementada
+# Especificación frontend proveedores y fiados
 
-La interfaz quedó ampliada y funcionando con:
+La interfaz amplía los seis módulos existentes con:
 
 - M07 Proveedores y compras: alta de proveedor, registro de compra y consulta de historial.
 - M08 Clientes y fiados: alta de cliente, registro de fiado, visualización de deuda y abonos.
 
-## Resultado realizado
+## Criterios
 
-- Se añadieron navegación, tipos y pantallas para M07 y M08.
-- Se conectaron proveedores, compras, clientes, fiados y abonos con la API.
-- Se conservaron diseño responsive, montos BOB y estados de carga/error/vacío.
-- Se agregaron pruebas de navegación y carga; las 9 pruebas y el build fueron aprobados.
+- Consumir exclusivamente los contratos `/suppliers`, `/purchases`, `/customers`, `/credits` y `/credits/:id/payments`.
+- Mostrar montos en BOB y estados de carga, error y vacío.
+- No aceptar carritos vacíos, cantidades/costos no positivos ni abonos no positivos.
+- Refrescar datos después de una escritura exitosa y mostrar el mensaje seguro del backend ante error.
+- Conservar navegación responsive y patrones visuales de los módulos existentes.
 
-Las historias implementadas se resumen en `docs/historias-de-usuario.md` y la evidencia está en `verification.md`.
+Historias canónicas: HU-07 a HU-10 en el repositorio backend y matriz local en `verification.md`.
