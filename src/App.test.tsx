@@ -23,6 +23,7 @@ describe('App', () => {
     apiMock.mockImplementation(async (path) => {
       if (path === '/dashboard') return dashboard;
       if (path.startsWith('/products')) return [];
+      if (path === '/suppliers' || path === '/purchases' || path === '/customers' || path === '/credits') return [];
       throw new Error(`Ruta no simulada: ${path}`);
     });
   });
@@ -69,6 +70,34 @@ describe('App', () => {
     render(<App />);
 
     expect(await screen.findByText(/Servidor fuera de linea/)).toBeInTheDocument();
+  });
+
+  it('carga el modulo de proveedores y compras', async () => {
+    render(<App />);
+    await screen.findByText('Ingresos de hoy');
+
+    fireEvent.click(screen.getByRole('button', { name: /Proveedores y compras/i }));
+
+    expect(await screen.findByRole('heading', { name: 'Proveedores y compras' })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(apiMock).toHaveBeenCalledWith('/suppliers');
+      expect(apiMock).toHaveBeenCalledWith('/purchases');
+    });
+    expect(screen.getByText('Registra el primer proveedor')).toBeInTheDocument();
+  });
+
+  it('carga el modulo de clientes y fiados', async () => {
+    render(<App />);
+    await screen.findByText('Ingresos de hoy');
+
+    fireEvent.click(screen.getByRole('button', { name: /Clientes y fiados/i }));
+
+    expect(await screen.findByRole('heading', { name: 'Clientes y fiados' })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(apiMock).toHaveBeenCalledWith('/customers');
+      expect(apiMock).toHaveBeenCalledWith('/credits');
+    });
+    expect(screen.getByText('Registra el primer cliente')).toBeInTheDocument();
   });
 });
 

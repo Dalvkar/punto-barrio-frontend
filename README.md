@@ -1,6 +1,6 @@
 # Punto Barrio Frontend
 
-Interfaz administrativa de Punto Barrio, creada con React 18, TypeScript, Tailwind CSS y Vite.
+Interfaz administrativa de Punto Barrio, creada con React 18, TypeScript, Tailwind CSS y Vite. Incluye los seis módulos originales y el incremento final de proveedores/compras y clientes/fiados.
 
 ## Producción
 
@@ -26,9 +26,16 @@ npm run test:watch
 npm run build
 ```
 
-Las 6 pruebas con Vitest, Testing Library y jsdom cubren el cliente HTTP, errores del backend, respuestas sin contenido, indicadores del dashboard, navegación y búsqueda, y fallos de carga.
+Las 9 pruebas con Vitest, Testing Library y jsdom cubren el cliente HTTP, errores del backend, respuestas sin contenido, dashboard, navegación, búsqueda, fallos de carga y acceso a los dos módulos nuevos.
 
 `.github/workflows/frontend-ci.yml` valida el mensaje Conventional Commit y ejecuta `npm ci`, pruebas y build en cada push a `main` o `master` y en cada pull request. Protege `main` en GitHub y exige el check `Frontend CI` para impedir merges si falla.
+
+## Incremento final
+
+- **Proveedores y compras:** registro de proveedores, armado de compra y consulta de historial.
+- **Clientes y fiados:** alta de clientes, límites, registro de fiado, deuda y abonos.
+
+La especificación y evidencia frontend están en `specs/002-proveedores-y-fiados/`. Los cuerpos de issues preparados están en `docs/github-issues.md`.
 
 ## Hooks y subagente Codex
 
